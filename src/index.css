@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-deep: #001a33;
+  --color-navy-light: #002a4d;
+  --color-blue-light: #1a5cbb;
+  --color-primary: #003399;
+  --color-gold: #c8a84e;
+  --color-gold-light: #d4b86a;
+  --color-cta: #f59e0b;
+  --color-cta-hover: #d97706;
+  --color-bg-soft: #f8fafc;
+  --color-surface: #ffffff;
+  --color-border-light: #e2e8f0;
+  --color-sky-blue: #dbeafe;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #475569;
+  --color-dark-bg: #0f172a;
+  --color-dark-surface: #1e293b;
+  --color-dark-border: #334155;
+  --color-dark-text: #f1f5f9;
+  --color-surface-dim: #cfdaf2;
+  --color-surface-bright: #f9f9ff;
+  --color-surface-container-low: #f0f3ff;
+  --color-surface-container: #e7eeff;
+  --color-surface-container-high: #dee8ff;
+  --color-surface-container-highest: #d8e3fb;
+  --color-surface-variant: #e2e8f0;
+  --color-on-surface: #111c2d;
+  --color-on-surface-variant: #444653;
+  --color-inverse-surface: #263143;
+  --color-inverse-on-surface: #ecf1ff;
+  --color-outline: #747684;
+  --color-outline-variant: #c4c5d5;
+  --color-surface-tint: #3557bc;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #003399;
+  --color-on-primary-container: #8aa4ff;
+  --color-inverse-primary: #b5c4ff;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fdd97a;
+  --color-on-secondary-container: #775e03;
+  --color-tertiary: #3b2200;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #583600;
+  --color-on-tertiary-container: #ea9600;
+  --color-secondary-fixed: #ffe08e;
+  --color-secondary-fixed-dim: #e5c366;
+  --color-on-secondary-fixed: #241a00;
+  --color-tertiary-fixed: #ffddb8;
+  --color-tertiary-fixed-dim: #ffb95f;
+  --color-on-tertiary-fixed: #2a1700;
+  --color-level-young: #2563eb;
+  --color-level-ket: #1d4ed8;
+  --color-level-pet: #4338ca;
+  --color-level-ielts: #6d28d9;
+  --color-level-toeic: #0e7490;
+  --color-level-tuyensinh: #047857;
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --spacing-padding-card: 20px;
+  --spacing-gap-card: 16px;
+}
+
+.dark {
+  --color-bg-soft: var(--color-dark-bg);
+  --color-surface: var(--color-dark-surface);
+  --color-border-light: var(--color-dark-border);
+  --color-text-primary: var(--color-dark-text);
+  --color-text-secondary: #94a3b8;
+  --color-surface-container-low: #15202B;
+  --color-surface-container: #18232F;
+  --color-surface-container-high: #1B2733;
+  --color-surface-container-highest: #1E2A37;
+  --color-surface-dim: var(--color-dark-bg);
+  --color-surface-bright: var(--color-dark-surface);
+  --color-on-surface: var(--color-dark-text);
+  --color-on-surface-variant: #94a3b8;
+  --color-surface-variant: #334155;
+  --color-outline: #475569;
+  --color-outline-variant: #334155;
+}
+
+@keyframes dot-scroll { 0% { background-position: 0 0; } 100% { background-position: 32px 32px; } }
+@keyframes pulse-orb { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.2); opacity: 0.8; } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes trophy-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes slide-up { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.dot-grid { background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 20px 20px; animation: dot-scroll 25s linear infinite; }
+.glow-orb { animation: pulse-orb 4s ease-in-out infinite alternate; }
+.animate-fade-up { animation: fade-up 0.7s cubic-bezier(0.2,0.8,0.2,1) forwards; opacity: 0; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.podium-glow { box-shadow: 0 0 30px rgba(255,224,142,0.4); }
+.toast-enter { animation: slide-up 0.3s ease-out forwards; }

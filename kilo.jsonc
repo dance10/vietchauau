@@ -1,0 +1,49 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  // ============================================================
+  // Kilo Code Config — BaiKiemTraVEU
+  // ============================================================
+
+  // 1. Custom Rules
+  "instructions": [".kilo/rules/*.md"],
+
+  // 2. Phân quyền truy cập (Permissions)
+  "permission": {
+    "bash": "ask",
+    "read": {
+      "*.env": "deny",
+      "secrets/**": "deny",
+      "*.key": "deny",
+      "dist/**": "deny",
+      "node_modules/**": "deny",
+      "*": "allow"
+    },
+    "edit": {
+      "dist/**": "deny",
+      "*.lock": "deny",
+      "*.env": "deny",
+      "node_modules/**": "deny",
+      "*": "allow"
+    },
+    "webfetch": "ask"
+  },
+
+  // 3. Watcher
+  "watcher": {
+    "ignore": [
+      "tmp/**",
+      "logs/**",
+      "dist/**",
+      "node_modules/**"
+    ]
+  },
+
+  // 4. Skills
+  "skills": {
+    "paths": [".kilo/skills"]
+  },
+
+  // 5. Display
+  "auto_collapse_reasoning": true,
+  "terminal_command_display": "collapsed"
+}
