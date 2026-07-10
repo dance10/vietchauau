@@ -1,4 +1,4 @@
-# BaiKiemTraVEU — Anh Ngữ Việt Châu Âu Online Exam Platform
+# Việt Châu Âu - VEU — Online Exam Platform
 
 Hệ thống luyện thi trực tuyến cho **Anh Ngữ Việt Châu Âu (VEU)** — nền tảng giúp học viên luyện tập các kỳ thi chuẩn quốc tế: Cambridge Starters/Movers/Flyers, KET, PET, IELTS, TOEIC và Tuyển Sinh lớp 10.
 
@@ -23,7 +23,7 @@ Hệ thống luyện thi trực tuyến cho **Anh Ngữ Việt Châu Âu (VEU)**
 ```bash
 # Clone repository
 git clone <repo-url>
-cd BaiKiemTraVEU
+cd BaiKiemTraVEU  # hoặc tên thư mục dự án
 
 # Install dependencies
 npm install

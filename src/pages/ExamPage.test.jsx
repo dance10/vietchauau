@@ -20,24 +20,24 @@ describe("ExamPage", () => {
     expect(screen.getByText("Thi thử Starters")).toBeInTheDocument();
   });
 
-  it("renders question count", () => {
+  it("renders question count in start screen", () => {
     renderWithRouter("starters");
     expect(screen.getByText(/\d+ câu hỏi/)).toBeInTheDocument();
   });
 
-  it("renders QuestionCard with Q. prefix", () => {
+  it("renders start screen with student name input", () => {
     renderWithRouter("starters");
-    expect(screen.getByText("Q.")).toBeInTheDocument();
+    expect(screen.getByText("Họ và tên học sinh")).toBeInTheDocument();
   });
 
-  it("renders timer", () => {
+  it("renders start button", () => {
     renderWithRouter("starters");
-    expect(screen.getByText(/\d{2}:\d{2}/)).toBeInTheDocument();
+    expect(screen.getByText("BẮT ĐẦU LÀM BÀI")).toBeInTheDocument();
   });
 
-  it("renders navigation buttons", () => {
+  it("renders location info", () => {
     renderWithRouter("starters");
-    expect(screen.getByText("Câu trước")).toBeInTheDocument();
+    expect(screen.getByText(/1031 Nguyễn Ảnh Thủ/)).toBeInTheDocument();
   });
 
   it("shows not-found message for invalid exam", () => {

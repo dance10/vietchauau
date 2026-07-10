@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "BaiKiemTraVEU - Anh Ngữ Việt Châu Âu Online Exam Platform",
+  "description": "Việt Châu Âu - VEU Online Exam Platform",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

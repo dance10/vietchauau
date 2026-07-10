@@ -4,6 +4,8 @@ import Layout from "./components/layout/Layout";
 import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import ExamPage from "./pages/ExamPage";
+import PagePlaceholder from "./pages/PagePlaceholder";
+import LuyenTapPage from "./pages/LuyenTapPage";
 
 export default function App() {
   return (
@@ -11,6 +13,10 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout><HomePage /></Layout>} />
+          <Route path="/khoa-hoc" element={<Layout><PagePlaceholder /></Layout>} />
+          <Route path="/luyen-tap" element={<Layout><LuyenTapPage /></Layout>} />
+          <Route path="/thu-thach" element={<Layout><PagePlaceholder /></Layout>} />
+          <Route path="/tin-tuc" element={<Layout><PagePlaceholder /></Layout>} />
           <Route path="/exam/:examId" element={<Layout><ExamPage /></Layout>} />
           <Route path="*" element={<Layout><NotFound /></Layout>} />
         </Routes>

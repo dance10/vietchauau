@@ -1,13 +1,14 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Moon, Sun, Menu, X, Bell, User } from "lucide-react";
 import { useDarkMode } from "../../hooks/useDarkMode.jsx";
 import useScrollNav from "../../hooks/useScrollNav";
 
 const NAV_LINKS = [
-  { label: "Khóa học", href: "#" },
-  { label: "Luyện tập", href: "#" },
-  { label: "Thử thách", href: "#" },
-  { label: "Tin tức", href: "#" },
+  { label: "Khóa học", href: "/khoa-hoc" },
+  { label: "Luyện tập", href: "/luyen-tap" },
+  { label: "Thử thách", href: "/thu-thach" },
+  { label: "Tin tức", href: "/tin-tuc" },
 ];
 
 export default function TopNav() {
@@ -31,15 +32,15 @@ export default function TopNav() {
     <>
       <header className={`fixed top-0 w-full z-50 transition-all duration-300 h-14 md:h-16 ${navClasses}`}>
         <div className="flex justify-between items-center h-full px-3 md:px-6 max-w-7xl mx-auto">
-          <div className={`font-black text-lg md:text-xl tracking-widest transition-colors duration-300 ${logoClasses}`}>
-            BaiKiemTraVEU
-          </div>
+          <Link to="/" className={`font-black text-lg md:text-xl tracking-widest transition-colors duration-300 hover:opacity-80 ${logoClasses}`}>
+            Việt Châu Âu - VEU
+          </Link>
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             {NAV_LINKS.map((link, i) => (
-              <a key={i} href={link.href}
+              <Link key={i} to={link.href}
                 className={`text-sm font-bold transition-all duration-200 hover:scale-105 active:scale-95 ${link.label === "Thử thách" ? linkActiveClasses : linkClasses}`}>
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="flex items-center gap-2 md:gap-3">
@@ -66,7 +67,7 @@ export default function TopNav() {
         </div>
         <nav className="flex flex-col gap-2 px-6">
           {NAV_LINKS.map((link, i) => (
-            <a key={i} href={link.href} className="text-white/90 font-bold text-lg py-3 border-b border-white/10 hover:text-gold transition-colors" onClick={() => setMenuOpen(false)}>{link.label}</a>
+            <Link key={i} to={link.href} className="text-white/90 font-bold text-lg py-3 border-b border-white/10 hover:text-gold transition-colors" onClick={() => setMenuOpen(false)}>{link.label}</Link>
           ))}
           <div className="flex gap-4 mt-4 pt-4 border-t border-white/10">
             <button className="flex items-center gap-2 text-white/80 hover:text-white" aria-label="Thông báo"><Bell className="w-5 h-5" /><span className="text-sm">Thông báo</span></button>
