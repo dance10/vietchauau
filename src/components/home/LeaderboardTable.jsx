@@ -1,7 +1,7 @@
 function Row({ item }) {
   return (
-    <div className="flex items-center px-4 md:px-6 py-4 border-b border-border-light even:bg-surface-container-low hover:bg-surface-container-low transition-colors duration-200 group">
-      <div className="w-12 md:w-16 text-center font-bold text-sm text-text-muted group-hover:text-primary transition-colors">{item.rank}</div>
+    <div className="flex items-center px-3 md:px-6 py-3 md:py-4 border-b border-border-light even:bg-surface-container-low hover:bg-surface-container-low transition-colors duration-200 group">
+      <div className="w-10 md:w-16 text-center font-bold text-sm text-text-muted group-hover:text-primary transition-colors">{item.rank}</div>
       <div className="flex-1 flex items-center gap-3 md:gap-4 pl-0 md:pl-4">
         <div className="w-9 h-9 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-bold text-xs shrink-0">{item.initials}</div>
         <div className="font-bold text-sm text-text-primary">{item.name}</div>
@@ -10,7 +10,7 @@ function Row({ item }) {
         <span className="bg-surface-variant px-2 py-0.5 rounded text-primary text-[10px] font-semibold">{item.examBadge}</span>
         <span>{item.examDetail}</span>
       </div>
-      <div className="w-20 md:w-32 text-right font-bold text-sm text-text-primary">{item.score}</div>
+      <div className="w-16 md:w-32 text-right font-bold text-sm text-text-primary">{item.score}</div>
     </div>
   );
 }

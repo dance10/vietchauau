@@ -37,7 +37,7 @@ export default function FullscreenWarning({ fsCountdown, setFsCountdown, onDismi
   return (
     <>
       <div className="fixed inset-0 bg-black/50 z-[9998]"></div>
-      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-red-600 text-white py-3 px-6 rounded-xl font-bold z-[10000] text-base shadow-xl flex items-center gap-3">
+      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-red-600 text-white py-3 px-4 md:px-6 rounded-xl font-bold z-[10000] text-sm md:text-base shadow-xl flex items-center gap-3">
         <span>⏰ Còn <b>{fsCountdown}s</b> — Vui lòng bật lại toàn màn hình!</span>
         {onEnterFS && (
           <button onClick={handleClick} className="bg-white text-red-600 border-none px-4 py-1.5 rounded-lg font-bold cursor-pointer text-sm">

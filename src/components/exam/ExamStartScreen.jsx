@@ -55,7 +55,7 @@ export default function ExamStartScreen({ examData, totalQuestions, onStart }) {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4" style={{ background: T.bg }}>
-      <div className="bg-white rounded-3xl border-4 shadow-xl p-8 md:p-12 max-w-lg w-full text-center" style={{ borderColor: T.border }}>
+      <div className="bg-white rounded-3xl border-4 shadow-xl p-5 md:p-12 max-w-lg w-full text-center" style={{ borderColor: T.border }}>
         <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-4 text-3xl" style={{ background: T.accent }}>
           {themeKey === 'young' ? '🌟' : themeKey === 'ket' ? '📝' : themeKey === 'pet' ? '📚' : themeKey === 'toeic' ? '💼' : themeKey === 'tuyensinh' ? '🎓' : '📖'}
         </div>
@@ -70,11 +70,11 @@ export default function ExamStartScreen({ examData, totalQuestions, onStart }) {
           {nameError && <p className="text-red-500 text-xs font-bold mt-1">{nameError}</p>}
         </div>
 
-        <div className="mb-4 text-left p-4 rounded-2xl bg-gray-50 border border-gray-200">
+        <div className="mb-4 text-left p-3 md:p-4 rounded-2xl bg-gray-50 border border-gray-200">
           <p className="text-sm font-bold text-gray-700">🏫 Cơ sở: <span className="font-normal text-gray-600">1031 Nguyễn Ảnh Thủ, Phường Trung Mỹ Tây, Thành phố Hồ Chí Minh</span></p>
         </div>
 
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800 mb-6 text-left">
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 md:p-4 text-sm text-amber-800 mb-6 text-left">
           <p className="font-bold">📋 Lưu ý khi làm bài:</p>
           <ul className="mt-1 space-y-1 text-amber-700">
             <li>• Tự động nộp bài khi hết giờ</li>

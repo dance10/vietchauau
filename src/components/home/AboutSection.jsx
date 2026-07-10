@@ -10,10 +10,10 @@ export default function AboutSection() {
         </h2>
 
         <div className="flex justify-center gap-3 my-6">
-          <div className="w-44 md:w-56 aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+          <div className="w-[42vw] md:w-56 aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
             <img src="/images/001.jpg" alt="VEU lớp học" className="w-full h-full object-cover" loading="lazy" />
           </div>
-          <div className="w-44 md:w-56 aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+          <div className="w-[42vw] md:w-56 aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
             <img src="/images/002.jpg" alt="VEU hoạt động" className="w-full h-full object-cover" loading="lazy" />
           </div>
         </div>

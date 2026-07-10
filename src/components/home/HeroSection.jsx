@@ -4,7 +4,7 @@ import Button from "../ui/Button";
 
 function StatCard({ number, label }) {
   return (
-    <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-5 md:p-6 rounded-2xl flex flex-col items-center gap-1 hover:scale-105 hover:bg-white/15 transition-all duration-300">
+    <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-4 md:p-6 rounded-2xl flex flex-col items-center gap-1 hover:scale-105 hover:bg-white/15 transition-all duration-300">
       <span className="text-gold text-2xl md:text-3xl font-black">{number}</span>
       <span className="text-xs md:text-sm text-white/70">{label}</span>
     </div>
@@ -25,7 +25,7 @@ export default function HeroSection() {
           </span>
           <span className="text-sm md:text-base font-black uppercase tracking-widest bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">Anh Ngữ Việt Châu Âu</span>
         </div>
-        <h1 className="text-3xl md:text-5xl lg:text-7xl font-black max-w-4xl leading-tight animate-fade-up" style={{ animationDelay: "100ms" }}>
+        <h1 className="text-[28px] md:text-5xl lg:text-7xl font-black max-w-4xl leading-tight animate-fade-up" style={{ animationDelay: "100ms" }}>
           Vừa Học <span className="text-gold">Vừa Chill</span>
         </h1>
         <p className="text-sm md:text-base text-white/80 max-w-2xl leading-relaxed animate-fade-up" style={{ animationDelay: "200ms" }}>
@@ -37,7 +37,7 @@ export default function HeroSection() {
           </Link>
           <Button variant="cta-secondary" size="lg">Đăng ký học thử</Button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8 w-full max-w-4xl animate-fade-up" style={{ animationDelay: "400ms" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 mt-6 md:mt-8 w-full max-w-4xl animate-fade-up" style={{ animationDelay: "400ms" }}>
           <StatCard number="13+" label="Bài thi mô phỏng" />
           <StatCard number="100+" label="Câu hỏi luyện tập" />
           <StatCard number="Tự động" label="Chấm điểm & xếp loại" />

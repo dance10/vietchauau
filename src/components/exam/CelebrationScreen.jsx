@@ -69,27 +69,27 @@ export default function CelebrationScreen({ phase, onNext, result, allQuestions,
       <div className="min-h-screen pb-12" style={{ background: defaultTheme.bg }}>
         <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes confettiFall{0%{transform:translateY(0)rotate(0deg);opacity:1}100%{transform:translateY(100vh)rotate(720deg);opacity:0}}`}</style>
         <div className="max-w-2xl mx-auto px-4 py-12">
-          <div className="bg-white rounded-3xl border-4 p-8 md:p-12 text-center shadow-xl" style={{ borderColor: defaultTheme.border, animation: 'fadeUp 0.5s ease-out' }}>
+          <div className="bg-white rounded-3xl border-4 p-5 md:p-12 text-center shadow-xl" style={{ borderColor: defaultTheme.border, animation: 'fadeUp 0.5s ease-out' }}>
             <div className="text-5xl mb-4">🎉</div>
             <h2 className="text-4xl font-black mb-2" style={{ color: defaultTheme.primary }}>KẾT QUẢ</h2>
             <p className="text-lg font-bold text-gray-500 mb-6">Học sinh: {studentName}</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div className="p-6 bg-gray-50 rounded-2xl">
+              <div className="p-4 md:p-6 bg-gray-50 rounded-2xl">
                 <p className="text-5xl font-black text-gray-900">{result.score}</p>
                 <p className="text-gray-400 font-bold text-sm">/ {result.total} CÂU</p>
                 <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-1">Đúng</p>
               </div>
-              <div className="p-6 rounded-2xl text-white flex flex-col items-center justify-center" style={{ background: defaultTheme.gradient }}>
+              <div className="p-4 md:p-6 rounded-2xl text-white flex flex-col items-center justify-center" style={{ background: defaultTheme.gradient }}>
                 <p className="text-5xl font-black">{result.percentage}%</p>
                 <p className="font-bold text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>Phần trăm</p>
               </div>
-              <div className="p-6 rounded-2xl border flex flex-col items-center justify-center gap-2" style={{ background: defaultTheme.accent, borderColor: defaultTheme.border }}>
+              <div className="p-4 md:p-6 rounded-2xl border flex flex-col items-center justify-center gap-2" style={{ background: defaultTheme.accent, borderColor: defaultTheme.border }}>
                 <BandVisual result={result} examType={examType} />
                 <p className="font-bold text-sm" style={{ color: defaultTheme.text }}>Xếp loại</p>
               </div>
             </div>
             <button onClick={onNext}
-              className="text-white font-black py-4 px-12 rounded-full text-lg shadow-xl transition active:scale-95 uppercase tracking-wider"
+              className="w-full md:w-auto text-white font-black py-4 px-8 md:px-12 rounded-full text-lg shadow-xl transition active:scale-95 uppercase tracking-wider"
               style={{ background: defaultTheme.gradient }}>
               📝 Xem lại đáp án
             </button>
@@ -104,7 +104,7 @@ export default function CelebrationScreen({ phase, onNext, result, allQuestions,
       <div className="min-h-screen pb-12" style={{ background: defaultTheme.bg }}>
         <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}`}</style>
         <div className="max-w-4xl mx-auto px-4 py-12">
-          <div className="bg-white rounded-3xl border-4 p-8 shadow-xl" style={{ borderColor: defaultTheme.border, animation: 'fadeUp 0.5s ease-out' }}>
+          <div className="bg-white rounded-3xl border-4 p-5 md:p-8 shadow-xl" style={{ borderColor: defaultTheme.border, animation: 'fadeUp 0.5s ease-out' }}>
             <h2 className="text-3xl font-black mb-2 text-center" style={{ color: defaultTheme.primary }}>CHI TIẾT ĐÁP ÁN</h2>
             <p className="text-lg font-bold text-gray-500 mb-6 text-center">Học sinh: {studentName}</p>
             <div className="text-center mb-8">
@@ -113,7 +113,7 @@ export default function CelebrationScreen({ phase, onNext, result, allQuestions,
               <span className="text-xl font-black" style={{ color: defaultTheme.primary }}>{result.percentage}%</span>
             </div>
             {result.results && (
-              <div className="grid md:grid-cols-2 gap-3">
+              <div className="grid md:grid-cols-2 gap-2 md:gap-3">
                 {allQuestions.filter(q => q.answer).map(q => {
                   const r = result.results[q.id]
                   const ok = r?.isCorrect
@@ -151,7 +151,7 @@ export default function CelebrationScreen({ phase, onNext, result, allQuestions,
     <div className="min-h-screen pb-12" style={{ background: defaultTheme.bg }}>
       <style>{`@keyframes confettiFall{0%{transform:translateY(0)rotate(0deg);opacity:1}100%{transform:translateY(100vh)rotate(720deg);opacity:0}}@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}`}</style>
       <div className="max-w-2xl mx-auto px-4 py-12">
-        <div className="bg-white rounded-3xl border-4 p-8 md:p-12 text-center shadow-xl" style={{ borderColor: defaultTheme.border, animation: 'fadeUp 0.5s ease-out' }}>
+        <div className="bg-white rounded-3xl border-4 p-5 md:p-12 text-center shadow-xl" style={{ borderColor: defaultTheme.border, animation: 'fadeUp 0.5s ease-out' }}>
           <div className="text-6xl mb-4">🏆</div>
           <h2 className="text-4xl font-black mb-2" style={{ color: defaultTheme.primary }}>VINH DANH</h2>
           <p className="text-gray-400 font-bold text-sm uppercase tracking-widest mb-6">Học sinh xuất sắc</p>
@@ -160,20 +160,20 @@ export default function CelebrationScreen({ phase, onNext, result, allQuestions,
           </div>
           <p className="text-2xl font-black text-gray-900 mb-4">{studentName}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <div className="p-6 bg-gray-50 rounded-2xl">
+            <div className="p-4 md:p-6 bg-gray-50 rounded-2xl">
               <p className="text-5xl font-black text-gray-900">{result.score}</p>
               <p className="text-gray-400 font-bold text-sm">/ {result.total} CÂU</p>
             </div>
-            <div className="p-6 rounded-2xl text-white flex flex-col items-center justify-center" style={{ background: defaultTheme.gradient }}>
+            <div className="p-4 md:p-6 rounded-2xl text-white flex flex-col items-center justify-center" style={{ background: defaultTheme.gradient }}>
               <p className="text-5xl font-black">{result.percentage}%</p>
               <p className="font-bold text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>Phần trăm</p>
             </div>
-            <div className="p-6 rounded-2xl border flex flex-col items-center justify-center gap-2" style={{ background: defaultTheme.accent, borderColor: defaultTheme.border }}>
+            <div className="p-4 md:p-6 rounded-2xl border flex flex-col items-center justify-center gap-2" style={{ background: defaultTheme.accent, borderColor: defaultTheme.border }}>
               <BandVisual result={result} examType={examType} />
               <p className="font-bold text-sm" style={{ color: defaultTheme.text }}>Xếp loại</p>
             </div>
           </div>
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <button onClick={onRetry} className="font-bold py-3 px-8 rounded-full text-white transition shadow-md" style={{ background: defaultTheme.primary }}>
               🔄 Làm lại
             </button>

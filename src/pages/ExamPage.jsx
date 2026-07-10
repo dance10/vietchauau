@@ -173,12 +173,12 @@ export default function ExamPage() {
   const isCritical = timer <= 60 && timer > 0
 
   const renderMCQ = (q) => (
-    <div key={q.id} className="p-4 md:p-5 bg-white rounded-2xl shadow-sm border border-gray-100 mb-4 transition hover:shadow-md">
+    <div key={q.id} className="p-3 md:p-5 bg-white rounded-2xl shadow-sm border border-gray-100 mb-4 transition hover:shadow-md">
       <p className="font-bold text-gray-800 mb-3 text-sm md:text-base">Câu {q.id}. {q.question}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {Object.entries(q.options).map(([key, val]) => (
           <button key={key}
-            className={`p-3 md:p-4 rounded-xl border-2 font-bold text-sm text-left transition-all ${answers[q.id] === key ? 'text-white shadow-md' : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400'}`}
+            className={`p-3.5 md:p-4 rounded-xl border-2 font-bold text-sm text-left transition-all ${answers[q.id] === key ? 'text-white shadow-md' : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400'}`}
             style={answers[q.id] === key ? { background: T.primary, borderColor: T.primaryDark } : {}}
             onClick={() => handleAnswer(q.id, key)}>
             <span className="font-black mr-2" style={answers[q.id] === key ? {} : { color: T.primary }}>{key}.</span> {val}
@@ -226,26 +226,26 @@ export default function ExamPage() {
 
       <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes confettiFall{0%{transform:translateY(0)rotate(0deg);opacity:1}100%{transform:translateY(100vh)rotate(720deg);opacity:0}}.progress-bar{height:10px;background:#e2e8f0;border-radius:8px;overflow:hidden}.progress-fill{height:100%;border-radius:8px;transition:width 0.5s cubic-bezier(.34,1.56,.64,1)}`}</style>
 
-      <header className="bg-white border-b-4 shadow-sm p-6 text-center relative" style={{ borderColor: T.header }}>
-        <button onClick={goHome} className="absolute left-4 top-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-3 py-1.5 rounded-full">
+      <header className="bg-white border-b-4 shadow-sm p-4 md:p-6 text-center relative" style={{ borderColor: T.header }}>
+        <button onClick={goHome} className="absolute left-3 top-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-3 py-1.5 rounded-full">
           🏠 Trang Chủ
         </button>
         <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">ANH NGỮ VIỆT CHÂU ÂU</h2>
-        <h1 className="text-2xl md:text-3xl font-black tracking-tight" style={{ color: T.primaryDark }}>VEU ONLINE EXAM</h1>
+        <h1 className="text-xl md:text-3xl font-black tracking-tight" style={{ color: T.primaryDark }}>VEU ONLINE EXAM</h1>
       </header>
 
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
-        <div className="bg-white p-4 rounded-2xl shadow-md border-2 flex justify-between items-center sticky top-0 z-50" style={{ borderColor: T.border }}>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 text-white rounded-full flex items-center justify-center font-black text-sm" style={{ background: T.gradient }}>
+        <div className="bg-white p-3 md:p-4 rounded-2xl shadow-md border-2 flex justify-between items-center sticky top-0 z-50" style={{ borderColor: T.border }}>
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="w-8 h-8 md:w-10 md:h-10 text-white rounded-full flex items-center justify-center font-black text-xs md:text-sm" style={{ background: T.gradient }}>
               {studentName.charAt(0).toUpperCase()}
             </div>
-            <p className="font-bold text-sm truncate max-w-[140px]" style={{ color: T.text }}>{studentName}</p>
+            <p className="hidden sm:block font-bold text-sm truncate max-w-[140px]" style={{ color: T.text }}>{studentName}</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             <span className="text-xs text-gray-400 font-bold">{answeredCount}/{totalQ}</span>
             {examData.duration > 0 && (
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border-2"
+              <div className="flex items-center gap-2 px-2 py-1 md:px-3 md:py-1.5 rounded-xl border-2"
                 style={{ background: isCritical ? '#fef2f2' : isWarning ? '#fffbeb' : T.accent, borderColor: isCritical ? '#fecaca' : isWarning ? '#fde68a' : T.border }}>
                 {isCritical ? (
                   <AlertTriangle className="w-4 h-4 text-red-500 animate-pulse" />
@@ -277,7 +277,7 @@ export default function ExamPage() {
             <div className="text-white font-bold p-4 md:p-5" style={{ background: T.gradient }}>
               <h2 className="text-sm md:text-base uppercase tracking-wider">{part.title}</h2>
             </div>
-            <div className="p-5 md:p-6">
+            <div className="p-4 md:p-6">
               {part.instructions && <p className="italic text-gray-500 mb-5 text-sm">{part.instructions}</p>}
 
               {part.type === 'passage' && part.passages && part.passages.map((pg, pi) => (
@@ -309,7 +309,7 @@ export default function ExamPage() {
 
         <div className="text-center pb-8">
           <button onClick={handleSubmit} disabled={submitting}
-            className="text-white font-black py-4 px-16 rounded-full text-xl shadow-2xl transition active:scale-95 uppercase disabled:opacity-50"
+            className="w-full md:w-auto text-white font-black py-4 px-8 md:px-16 rounded-full text-xl shadow-2xl transition active:scale-95 uppercase disabled:opacity-50"
             style={{ background: T.gradient }}>
             {submitting ? '⏳ Đang nộp...' : 'Nộp bài ngay!'}
           </button>
