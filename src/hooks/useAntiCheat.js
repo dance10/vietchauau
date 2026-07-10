@@ -6,6 +6,7 @@ export default function useAntiCheat({
   mode = 'submit',
   enabled = true,
 }) {
+  {/* State */}
   const [tabWarn, setTabWarn] = useState(0)
   const [fsWarn, setFsWarn] = useState(false)
   const [fsCountdown, setFsCountdown] = useState(0)
@@ -17,6 +18,7 @@ export default function useAntiCheat({
     callbacksRef.current = { onForceSubmit, onReset, mode, enabled }
   })
 
+  {/* enterFS */}
   const enterFS = useCallback(() => {
     try {
       const el = document.documentElement
@@ -26,6 +28,7 @@ export default function useAntiCheat({
     } catch (e) {}
   }, [])
 
+  {/* exitFS */}
   const exitFS = useCallback(() => {
     try {
       if (document.fullscreenElement && document.exitFullscreen) {
@@ -34,11 +37,13 @@ export default function useAntiCheat({
     } catch (e) {}
   }, [])
 
+  {/* clearFsWarning */}
   const clearFsWarning = useCallback(() => {
     setFsWarn(false)
     setFsCountdown(0)
   }, [])
 
+  {/* handleViolation */}
   const handleViolation = useCallback((reason) => {
     if (violatedRef.current) return
     violatedRef.current = true
@@ -51,6 +56,7 @@ export default function useAntiCheat({
     }
   }, [clearFsWarning])
 
+  {/* handleVisibility */}
   const handleVisibility = useCallback(() => {
     const { enabled: e } = callbacksRef.current
     if (document.hidden && e && !violatedRef.current) {
@@ -62,6 +68,7 @@ export default function useAntiCheat({
     }
   }, [handleViolation])
 
+  {/* Effect: register anti-cheat listeners */}
   useEffect(() => {
     if (!enabled) return
     violatedRef.current = false
@@ -118,5 +125,6 @@ export default function useAntiCheat({
     }
   }, [enabled, handleVisibility, clearFsWarning])
 
+  {/* Return values */}
   return { tabWarn, fsWarn, fsCountdown, setFsCountdown, enterFS, exitFS, clearFsWarning }
 }

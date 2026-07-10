@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { Construction } from "lucide-react";
 
+{/* Constants: PAGE_INFO */}
 const PAGE_INFO = {
   "khoa-hoc": { title: "Khóa học", desc: "Danh sách các khóa học tiếng Anh tại VEU" },
   "luyen-tap": { title: "Luyện tập", desc: "Bài tập luyện thêm theo từng kỹ năng" },

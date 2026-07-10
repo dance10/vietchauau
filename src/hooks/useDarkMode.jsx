@@ -1,8 +1,11 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
+{/* Context creation */}
 const DarkModeContext = createContext(null);
 
+{/* Provider */}
 export function DarkModeProvider({ children }) {
+  {/* Init state from localStorage */}
   const [isDark, setIsDark] = useState(() => {
     if (typeof window === "undefined") return false;
     const stored = localStorage.getItem("theme");
@@ -10,6 +13,7 @@ export function DarkModeProvider({ children }) {
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
+  {/* Effect: sync class + localStorage */}
   useEffect(() => {
     const root = document.documentElement;
     if (isDark) {
@@ -20,6 +24,7 @@ export function DarkModeProvider({ children }) {
     localStorage.setItem("theme", isDark ? "dark" : "light");
   }, [isDark]);
 
+  {/* Toggle callback */}
   const toggle = useCallback(() => setIsDark((prev) => !prev), []);
 
   return (
@@ -29,6 +34,7 @@ export function DarkModeProvider({ children }) {
   );
 }
 
+{/* Consumer hook */}
 export function useDarkMode() {
   const ctx = useContext(DarkModeContext);
   if (!ctx) throw new Error("useDarkMode must be used within DarkModeProvider");

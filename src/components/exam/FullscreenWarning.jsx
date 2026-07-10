@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 export default function FullscreenWarning({ fsCountdown, setFsCountdown, onDismiss, onEnterFS }) {
   const timerRef = useRef(null)
 
+  {/* Effect: countdown timer */}
   useEffect(() => {
     if (fsCountdown > 0 && !timerRef.current) {
       timerRef.current = setInterval(() => {
@@ -22,6 +23,7 @@ export default function FullscreenWarning({ fsCountdown, setFsCountdown, onDismi
     }
   }, [fsCountdown > 0])
 
+  {/* Handler: handleClick */}
   const handleClick = (e) => {
     e.preventDefault()
     if (onEnterFS) {
@@ -36,7 +38,9 @@ export default function FullscreenWarning({ fsCountdown, setFsCountdown, onDismi
 
   return (
     <>
+      {/* Modal overlay */}
       <div className="fixed inset-0 bg-black/50 z-[9998]"></div>
+      {/* Warning bar */}
       <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-red-600 text-white py-3 px-4 md:px-6 rounded-xl font-bold z-[10000] text-sm md:text-base shadow-xl flex items-center gap-3">
         <span>⏰ Còn <b>{fsCountdown}s</b> — Vui lòng bật lại toàn màn hình!</span>
         {onEnterFS && (

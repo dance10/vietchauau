@@ -4,6 +4,7 @@ import { Moon, Sun, Menu, X, Bell, User } from "lucide-react";
 import { useDarkMode } from "../../hooks/useDarkMode.jsx";
 import useScrollNav from "../../hooks/useScrollNav";
 
+{/* Constants: NAV_LINKS */}
 const NAV_LINKS = [
   { label: "Khóa học", href: "/khoa-hoc" },
   { label: "Luyện tập", href: "/luyen-tap" },
@@ -20,6 +21,7 @@ export default function TopNav() {
   const isHome = pathname === "/";
   const showScrolled = scrolled || !isHome;
 
+  {/* Computed: dynamic styles based on scroll */}
   const navClasses = showScrolled
     ? "bg-white dark:bg-dark-surface shadow-sm border-b border-border-light"
     : "bg-gradient-to-r from-navy-deep via-navy-light to-blue-light";
@@ -34,11 +36,14 @@ export default function TopNav() {
 
   return (
     <>
+      {/* Header bar */}
       <header className={`fixed top-0 w-full z-50 transition-all duration-500 h-14 md:h-16 ${navClasses}`}>
         <div className="flex justify-between items-center h-full px-3 md:px-6 max-w-7xl mx-auto">
+          {/* Logo */}
           <Link to="/" className={`font-black text-lg md:text-xl tracking-widest transition-colors duration-500 hover:opacity-80 ${logoClasses}`}>
             Việt Châu Âu - VEU
           </Link>
+          {/* Desktop nav links */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             {NAV_LINKS.map((link, i) => (
               <Link key={i} to={link.href}
@@ -48,6 +53,7 @@ export default function TopNav() {
               </Link>
             ))}
           </nav>
+          {/* Action buttons: notifications, account, theme toggle, hamburger */}
           <div className="flex items-center gap-2 md:gap-3">
             <button className="hidden md:flex p-2 hover:scale-105 active:scale-95" style={{ transition: 'color 500ms, transform 200ms' }} aria-label="Thông báo">
               <Bell className={`w-5 h-5 transition-colors duration-500 ${textClasses}`} />
@@ -65,7 +71,9 @@ export default function TopNav() {
           </div>
         </div>
       </header>
+      {/* Mobile overlay */}
       {menuOpen && <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={() => setMenuOpen(false)} />}
+      {/* Mobile drawer menu */}
       <div className={`fixed top-0 left-0 h-full w-[72vw] max-w-sm bg-gradient-to-b from-navy-deep to-navy-light z-50 transform transition-transform duration-300 ease-out md:hidden ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex justify-end p-3">
           <button onClick={() => setMenuOpen(false)} className="p-2 text-white/80 hover:text-white"><X className="w-6 h-6" /></button>

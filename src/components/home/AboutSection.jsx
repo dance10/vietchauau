@@ -2,6 +2,7 @@ export default function AboutSection() {
   return (
     <section className="bg-gradient-to-br from-navy-deep via-navy-light to-blue-light text-white py-10 md:py-16">
       <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
+        {/* Section label + heading */}
         <div className="inline-block bg-white/10 backdrop-blur-md text-gold text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider mb-4 border border-white/20">
           Về chúng tôi
         </div>
@@ -9,6 +10,7 @@ export default function AboutSection() {
           VỀ TRUNG TÂM ANH NGỮ <span className="text-gold">VIỆT CHÂU ÂU (VEU)</span>
         </h2>
 
+        {/* Image gallery */}
         <div className="flex justify-center gap-3 my-6">
           <div className="w-[42vw] md:w-56 aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
             <img src="/images/001.jpg" alt="VEU lớp học" className="w-full h-full object-cover" loading="lazy" />
@@ -18,6 +20,7 @@ export default function AboutSection() {
           </div>
         </div>
 
+        {/* Description text */}
         <div className="max-w-3xl mx-auto space-y-3 text-sm md:text-[15px] text-white/80 leading-relaxed mb-8 md:mb-12">
           <p>
             Chào mừng bạn đến với Trung tâm Anh ngữ Việt Châu Âu (VEU) – nơi chắp cánh cho những ước mơ và mở ra cánh cửa thành công thông qua ngôn ngữ toàn cầu!
@@ -27,6 +30,7 @@ export default function AboutSection() {
           </p>
         </div>
 
+        {/* Info cards: Vision, Why VEU, Contact */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
           <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl hover:bg-white/15 hover:scale-[1.02] transition-all duration-300">
             <div className="w-9 h-9 rounded-lg bg-gold/20 flex items-center justify-center text-base mb-3">🌟</div>

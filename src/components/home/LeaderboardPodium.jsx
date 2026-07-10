@@ -6,6 +6,7 @@ const MEDAL_COLORS = {
   3: { border: "border-t-tertiary-fixed-dim", glow: "", badge: "bg-tertiary-fixed-dim text-tertiary-container", scoreBg: "bg-surface-container-low" },
 };
 
+// PodiumCard component
 function PodiumCard({ item, isTop }) {
   const c = MEDAL_COLORS[item.rank];
   return (

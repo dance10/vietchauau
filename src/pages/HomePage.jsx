@@ -7,8 +7,11 @@ import LeaderboardSection from "../components/home/LeaderboardSection";
 export default function HomePage() {
   return (
     <>
+      {/* Section: Hero */}
       <HeroSection />
+      {/* Section: About */}
       <AboutSection />
+      {/* Section: CTA - bắt đầu luyện tập */}
       <div className="bg-surface">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16 text-center">
           <div className="max-w-2xl mx-auto mb-8">
@@ -23,6 +26,7 @@ export default function HomePage() {
           </Link>
         </div>
       </div>
+      {/* Section: Leaderboard */}
       <div className="bg-bg-soft">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16">
           <LeaderboardSection />

@@ -11,6 +11,7 @@ import { saveResult } from '../config/googleSheets'
 import { questionsMap } from '../config/questions'
 import { LOCATION } from '../config/constants'
 
+{/* Constants: THEMES */}
 const THEMES = {
   young: { bg: '#eff6ff', primary: '#2563eb', primaryDark: '#1d4ed8', accent: '#dbeafe', border: '#93c5fd', text: '#1e3a8a', header: '#3b82f6', gradient: 'linear-gradient(135deg,#3b82f6,#1d4ed8)' },
   ket: { bg: '#f8fafc', primary: '#003399', primaryDark: '#002a6e', accent: '#fef3c7', border: '#c8a84e', text: '#1e3a8a', header: '#003399', gradient: 'linear-gradient(135deg,#003399,#002a6e)' },
@@ -20,6 +21,7 @@ const THEMES = {
   tuyensinh: { bg: '#f0fdf4', primary: '#047857', primaryDark: '#03634a', accent: '#dcfce7', border: '#86efac', text: '#14532d', header: '#22c55e', gradient: 'linear-gradient(135deg,#22c55e,#047857)' },
 }
 
+{/* Helper: flattenQuestions() */}
 function flattenQuestions(examData) {
   if (!examData) return []
   const flat = []
@@ -39,6 +41,7 @@ function flattenQuestions(examData) {
 export default function ExamPage() {
   const { examId } = useParams()
   const navigate = useNavigate()
+  {/* Handler: goHome() */}
   const goHome = useCallback(() => {
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {})
     navigate('/')
@@ -49,6 +52,7 @@ export default function ExamPage() {
   const T = THEMES[THEMES[themeKey] ? themeKey : 'ket']
   const scoringConfig = scoringConfigs[themeKey] || scoringConfigs.ket
 
+  {/* State declarations */}
   const [phase, setPhase] = useState('start')
   const [resultPhase, setResultPhase] = useState('score')
   const [studentName, setStudentName] = useState('')
@@ -61,6 +65,7 @@ export default function ExamPage() {
   const allQuestions = useMemo(() => flattenQuestions(examData), [examData])
   const totalQ = allQuestions.filter(q => q.answer).length
 
+  {/* Handler: retry() */}
   const retry = useCallback(() => {
     setPhase('start')
     setResultPhase('score')
@@ -70,6 +75,7 @@ export default function ExamPage() {
     setSubmitting(false)
   }, [examData])
 
+  {/* Handler: handleSubmit() */}
   const handleSubmit = useCallback(async () => {
     clearInterval(timerRef.current)
     setSubmitting(true)
@@ -92,16 +98,19 @@ export default function ExamPage() {
     setSubmitting(false)
   }, [allQuestions, answers, studentName, examData, examId, scoringConfig])
 
+  {/* Anti-cheat hook */}
   const { enterFS, tabWarn, fsWarn, fsCountdown, setFsCountdown, exitFS, clearFsWarning } = useAntiCheat({
     onForceSubmit: () => handleSubmit(),
     onReset: retry,
     enabled: phase === 'test',
   })
 
+  {/* Effect: init timer */}
   useEffect(() => {
     if (examData?.duration) setTimer(examData.duration * 60)
   }, [examData])
 
+  {/* Effect: countdown */}
   useEffect(() => {
     if (phase === 'test' && timer > 0) {
       timerRef.current = setInterval(() => {
@@ -114,20 +123,24 @@ export default function ExamPage() {
     }
   }, [phase, timer > 0])
 
+  {/* Effect: auto-submit on timeout */}
   useEffect(() => {
     if (phase === 'test' && timer <= 0 && examData?.duration) handleSubmit()
   }, [timer, phase, examData, handleSubmit])
 
+  {/* Handler: handleAnswer() */}
   const handleAnswer = useCallback((qId, value) => {
     setAnswers(prev => ({ ...prev, [qId]: value }))
   }, [])
 
+  {/* Handler: startTest() */}
   const startTest = (name) => {
     setStudentName(name)
     setPhase('test')
     enterFS()
   }
 
+  {/* Phase: not found */}
   if (!examData) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 px-4">
@@ -141,10 +154,12 @@ export default function ExamPage() {
     )
   }
 
+  {/* Phase: start screen */}
   if (phase === 'start') {
     return <ExamStartScreen examData={examData} totalQuestions={totalQ} onStart={startTest} />
   }
 
+  {/* Phase: result (score/review/congratulations) */}
   if (phase === 'result' && result) {
     return (
       <CelebrationScreen
@@ -165,6 +180,7 @@ export default function ExamPage() {
     )
   }
 
+  {/* Computed: timer string + answered count */}
   const timerStr = `${Math.floor(timer / 60).toString().padStart(2, '0')}:${(timer % 60).toString().padStart(2, '0')}`
   const answeredCount = allQuestions.filter(q => {
     const v = answers[q.id]; return v !== undefined && v !== null && v !== ''
@@ -172,6 +188,7 @@ export default function ExamPage() {
   const isWarning = timer <= 300 && timer > 0
   const isCritical = timer <= 60 && timer > 0
 
+  {/* Renderer: MCQ */}
   const renderMCQ = (q) => (
     <div key={q.id} className="p-3 md:p-5 bg-white rounded-2xl shadow-sm border border-gray-100 mb-4 transition hover:shadow-md">
       <p className="font-bold text-gray-800 mb-3 text-sm md:text-base">Câu {q.id}. {q.question}</p>
@@ -188,6 +205,7 @@ export default function ExamPage() {
     </div>
   )
 
+  {/* Renderer: fill-blank */}
   const renderFill = (q) => (
     <div key={q.id} className="p-4 bg-white rounded-2xl shadow-sm border border-gray-100 mb-3">
       <p className="font-bold text-gray-800 mb-2 text-sm">Câu {q.id}. {q.question}</p>
@@ -199,6 +217,7 @@ export default function ExamPage() {
     </div>
   )
 
+  {/* Renderer: writing */}
   const renderWriting = (q) => (
     <div key={q.id} className="p-4 bg-white rounded-2xl shadow-sm border border-gray-100 mb-3">
       <p className="font-bold text-gray-800 mb-2 text-sm">Task {q.id}:</p>
@@ -217,15 +236,19 @@ export default function ExamPage() {
 
   return (
     <div className="min-h-screen pb-16" style={{ background: T.bg }}>
+      {/* Tab change warning banner */}
       {tabWarn > 0 && (
         <div className="fixed top-0 left-0 right-0 bg-red-500 text-white text-center py-3 font-bold z-[9999] text-sm">
           ⚠️ Không được rời khỏi tab! (Lần: {tabWarn}){tabWarn >= 3 ? ' — Tự động nộp bài!' : ''}
         </div>
       )}
+      {/* Fullscreen warning */}
       {fsWarn && <FullscreenWarning fsCountdown={fsCountdown} setFsCountdown={setFsCountdown} onEnterFS={enterFS} onDismiss={clearFsWarning} />}
 
-      <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes confettiFall{0%{transform:translateY(0)rotate(0deg);opacity:1}100%{transform:translateY(100vh)rotate(720deg);opacity:0}}.progress-bar{height:10px;background:#e2e8f0;border-radius:8px;overflow:hidden}.progress-fill{height:100%;border-radius:8px;transition:width 0.5s cubic-bezier(.34,1.56,.64,1)}`}</style>
+      {/* Inline styles */}
+      <style>{`@keyframes fadeUp...`}</style>
 
+      {/* Exam header */}
       <header className="bg-white border-b-4 shadow-sm p-4 md:p-6 text-center relative" style={{ borderColor: T.header }}>
         <button onClick={goHome} className="absolute left-3 top-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-3 py-1.5 rounded-full">
           🏠 Trang Chủ
@@ -234,7 +257,9 @@ export default function ExamPage() {
         <h1 className="text-xl md:text-3xl font-black tracking-tight" style={{ color: T.primaryDark }}>VEU ONLINE EXAM</h1>
       </header>
 
+      {/* Main content area */}
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
+        {/* Sticky progress bar: student info + timer */}
         <div className="bg-white p-3 md:p-4 rounded-2xl shadow-md border-2 flex justify-between items-center sticky top-0 z-50" style={{ borderColor: T.border }}>
           <div className="flex items-center gap-2 md:gap-3">
             <div className="w-8 h-8 md:w-10 md:h-10 text-white rounded-full flex items-center justify-center font-black text-xs md:text-sm" style={{ background: T.gradient }}>
@@ -260,6 +285,7 @@ export default function ExamPage() {
           </div>
         </div>
 
+        {/* Progress bar */}
         {examData.duration > 0 && (
           <div className="progress-wrap">
             <div className="flex justify-between text-xs font-bold mb-1" style={{ color: T.primary }}>
@@ -272,6 +298,7 @@ export default function ExamPage() {
           </div>
         )}
 
+        {/* Exam parts loop */}
         {examData.parts.map((part, pidx) => (
           <section key={part.id || pidx} className="bg-white rounded-3xl border-2 shadow-sm overflow-hidden" style={{ borderColor: T.border, animation: 'fadeUp 0.5s ease-out', animationDelay: (pidx * 0.1) + 's', opacity: 0, animationFillMode: 'forwards' }}>
             <div className="text-white font-bold p-4 md:p-5" style={{ background: T.gradient }}>
@@ -307,6 +334,7 @@ export default function ExamPage() {
           </section>
         ))}
 
+        {/* Submit button */}
         <div className="text-center pb-8">
           <button onClick={handleSubmit} disabled={submitting}
             className="w-full md:w-auto text-white font-black py-4 px-8 md:px-16 rounded-full text-xl shadow-2xl transition active:scale-95 uppercase disabled:opacity-50"

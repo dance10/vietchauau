@@ -1,5 +1,6 @@
 import { scoringConfigs } from '../../config/scoringConfig'
 
+{/* Constants: THEMES */}
 const THEMES = {
   young: { bg: '#eff6ff', primary: '#2563eb', primaryDark: '#1d4ed8', accent: '#dbeafe', border: '#93c5fd', text: '#1e3a8a', header: '#3b82f6', gradient: 'linear-gradient(135deg,#3b82f6,#1d4ed8)' },
   ket: { bg: '#f8fafc', primary: '#003399', primaryDark: '#002a6e', accent: '#fef3c7', border: '#c8a84e', text: '#1e3a8a', header: '#003399', gradient: 'linear-gradient(135deg,#003399,#002a6e)' },
@@ -9,6 +10,7 @@ const THEMES = {
   tuyensinh: { bg: '#f0fdf4', primary: '#047857', primaryDark: '#03634a', accent: '#dcfce7', border: '#86efac', text: '#14532d', header: '#22c55e', gradient: 'linear-gradient(135deg,#22c55e,#047857)' },
 }
 
+{/* Component: BandVisual */}
 function BandVisual({ result, examType }) {
   const cfg = examType ? scoringConfigs[examType] : null
   const visual = cfg?.visual || 'ring'
@@ -64,6 +66,7 @@ export default function CelebrationScreen({ phase, onNext, result, allQuestions,
 
   const defaultTheme = THEMES[examType] || THEMES.ket
 
+  {/* Phase: score screen */}
   if (phase === 'score') {
     return (
       <div className="min-h-screen pb-12" style={{ background: defaultTheme.bg }}>
@@ -99,6 +102,7 @@ export default function CelebrationScreen({ phase, onNext, result, allQuestions,
     )
   }
 
+  {/* Phase: review screen */}
   if (phase === 'review') {
     return (
       <div className="min-h-screen pb-12" style={{ background: defaultTheme.bg }}>
@@ -147,6 +151,7 @@ export default function CelebrationScreen({ phase, onNext, result, allQuestions,
     )
   }
 
+  {/* Phase: congratulations screen */}
   return (
     <div className="min-h-screen pb-12" style={{ background: defaultTheme.bg }}>
       <style>{`@keyframes confettiFall{0%{transform:translateY(0)rotate(0deg);opacity:1}100%{transform:translateY(100vh)rotate(720deg);opacity:0}}@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}`}</style>
@@ -183,6 +188,7 @@ export default function CelebrationScreen({ phase, onNext, result, allQuestions,
           </div>
         </div>
       </div>
+      {/* Confetti script injection */}
       <div dangerouslySetInnerHTML={{
         __html: `<script>(function(){var c=['${defaultTheme.primary}','${defaultTheme.primaryDark}','#f59e0b','#10b981','#ec4899'];for(var i=0;i<50;i++){var p=document.createElement('div');p.style.cssText='position:fixed;top:-10px;left:'+Math.random()*100+'vw;width:'+(6+Math.random()*8)+'px;height:'+(6+Math.random()*8)+'px;background:'+c[Math.floor(Math.random()*c.length)]+';border-radius:'+(Math.random()>0.5?'50%':'2px')+';z-index:9999;pointer-events:none;animation:confettiFall '+(2+Math.random()*2)+'s linear forwards;animation-delay:'+(Math.random()*0.5)+'s';document.body.appendChild(p);setTimeout(function(){p.remove()},5000);}})();<\/script>`
       }} />
