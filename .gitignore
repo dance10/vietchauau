@@ -4,4 +4,19 @@ dist
 .vscode
 *.local
 .env
-.env.local
+.env.*
+*.log
+
+# Agent & Dev tooling
+.codegraph/
+.kilo/
+data/
+plans/
+docs/
+kilo.jsonc
+AGENTS.md
+DESIGN.md
+
+# OS
+.DS_Store
+Thumbs.db
